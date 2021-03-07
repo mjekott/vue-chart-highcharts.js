@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container px-5">
+    <the-header @toggle="toggle"></the-header>
+    <keep-alive>
+      <component :is="selectedComponent" class="mt-5"> </component>
+    </keep-alive>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TheHeader from "./components/TheHeader.vue";
+import Dashboard from "./components/Dashboard";
+import Form from "./components/Form";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    TheHeader,
+    Dashboard,
+    Form,
+  },
+  data() {
+    return {
+      selectedComponent: "Dashboard",
+    };
+  },
+  methods: {
+    toggle(data) {
+      this.selectedComponent = data;
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
